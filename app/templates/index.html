@@ -1,0 +1,25 @@
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+
+<body>
+    <h1>N-chan</h1>
+
+    <h2>Post</h2>
+    <form action='/post' method='post'>
+        <input name='content'></input>
+        <button>Post</button>
+    </form>
+
+    <h2>All Posts</h2>
+
+    {% for post in posts %}
+    <blockquote>
+        {{post}}
+    </blockquote>
+    <button>
+        <a href='/post/{{loop.index0}}'>Details</a>
+    </button>
+    {% endfor %}
+
+</body>

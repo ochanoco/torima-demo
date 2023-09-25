@@ -1,0 +1,31 @@
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+</head>
+
+<body>
+    <h1>N-chan</h1>
+
+    <h2>Post</h2>
+
+    <h3>Content</h3>
+    <blockquote>
+        {{post}}
+    </blockquote>
+
+
+    <h2>Manage Post</h2>
+
+    <details>
+        <summary>Manage Post</summary>
+        <h3>Update Post</h3>
+        <input id="update_input"></input>
+        <button onclick="update_post()">Update</button>
+
+        <br>
+
+        <h3>Delete Post</h3>
+        <button onclick="delete_post()">Delete</button>
+    </details>
+
+    <script src="/static/script.js"></script>
+</body>

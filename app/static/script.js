@@ -1,5 +1,4 @@
 const update_input = document.getElementById('update_input')
-// const index = location.pathname.replace(/\/+$/, "").split('/').pop()
 
 const delete_post = async () => {
     const response = await fetch(location.pathname, {

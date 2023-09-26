@@ -1,18 +1,24 @@
 from flask import Flask, redirect, request, render_template
+import os
 app = Flask(__name__)
 
 posts = []
 
-TOKEN = '<proxy_token>'
+TOKEN = os.environ.get('OCHANOCO_SECRET')
 
 
 def authenticate():
+    # may be not needed
     token = request.headers.get('X-Ochanoco-Proxy-Token', '')
+    print('token: ', token)
 
     if token != TOKEN:
         return None
+    ###
 
     user_id = request.headers.get('X-Ochanoco-UserID', '')
+    print('user_id: ', user_id)
+
     return user_id
 
 

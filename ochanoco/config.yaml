@@ -1,11 +1,8 @@
 default_origin: app:5000
 
 white_list_path: [
-  '/static/script.js'
+  '/static/script.js',
+  '/post/0'
 ]
-
-protection_scope: []
-
-port: 8080
 
 scheme: http

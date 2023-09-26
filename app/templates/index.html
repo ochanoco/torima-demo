@@ -14,12 +14,18 @@
     <h2>All Posts</h2>
 
     {% for post in posts %}
+
+    <b>
+        {{post['user_id']}}
+    </b>
+
     <blockquote>
-        {{post}}
+        {{post['content']}}
     </blockquote>
     <button>
         <a href='/post/{{loop.index0}}'>Details</a>
     </button>
+    <br />
     {% endfor %}
 
 </body>

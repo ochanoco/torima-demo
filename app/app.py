@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, redirect, request, render_template
 app = Flask(__name__)
 
 posts = []
@@ -70,6 +70,11 @@ def delete_post(post_id):
     del posts[index]
 
     return 'ok'
+
+
+@app.route("/_ochanoco/back", methods=['GET'])
+def back():
+    return redirect('/')
 
 
 if __name__ == "__main__":

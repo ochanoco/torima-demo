@@ -15,8 +15,8 @@ services:
   proxy:
     image: ghcr.io/ochanoco/proxy:develop
     volumes:
-      - "./ochanoco/data:/workspace/data"
-      - "./ochanoco/config.yaml:/workspace/config.yaml"
+      - "./proxy/data:/workspace/data"
+      - "./proxy/config.yaml:/workspace/config.yaml"
     ports:
       - 8080:8080
     env_file:

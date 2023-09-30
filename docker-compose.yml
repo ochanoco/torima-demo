@@ -20,7 +20,7 @@ services:
     ports:
       - 8080:8080
     env_file:
-      - ./ochanoco/secret.env
+      - ./proxy/secret.env
     environment:
       - OCHANOCO_DB_TYPE=sqlite3
       - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1

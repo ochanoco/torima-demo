@@ -3,6 +3,7 @@ port: 8080
 default_origin: app:5000
 
 white_list_path: [
+  '/favicon.ico'
   '/static/script.js',
   '/post/0',
 ]

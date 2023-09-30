@@ -12,21 +12,8 @@ services:
     env_file:
       - ./app/secret.env
 
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "443:443"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/keys:/etc/nginx/conf.d/keys
-
-  ochanoco:
-    # image: ochanoco/proxy:latest
-    # --- this is for debug
-    build:
-      context: ../ochanoco
-      dockerfile: ./docker/Dockerfile
-    # ---
+  proxy:
+    image: ghcr.io/ochanoco/proxy:develop
     volumes:
       - "./ochanoco/data:/workspace/data"
       - "./ochanoco/config.yaml:/workspace/config.yaml"
@@ -37,4 +24,4 @@ services:
     environment:
       - OCHANOCO_DB_TYPE=sqlite3
       - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1
-      - LINE_LOGIN_BASE=https://127.0.0.1/ochanoco
+      - LINE_LOGIN_BASE=http://127.0.0.1:8080/ochanoco

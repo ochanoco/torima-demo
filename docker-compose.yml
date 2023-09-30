@@ -1,14 +1,9 @@
 version: "3"
 services:
   app:
-    # image: ochanoco/proxy:latest
-    # --- this is for debug
     build: ./app
-    # ---
     volumes:
       - "./app:/app"
-    ports:
-      - 5000:5000
     env_file:
       - ./app/secret.env
 

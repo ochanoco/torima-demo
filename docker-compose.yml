@@ -4,8 +4,6 @@ services:
     build: ./app
     volumes:
       - "./app:/app"
-    env_file:
-      - ./app/secret.env
 
   proxy:
     image: ghcr.io/ochanoco/proxy:develop
@@ -19,4 +17,4 @@ services:
     environment:
       - OCHANOCO_DB_TYPE=sqlite3
       - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1
-      - LINE_LOGIN_BASE=http://127.0.0.1:8080/ochanoco
+      - OCHANOCO_BASE=http://127.0.0.1:8080/ochanoco

@@ -1,0 +1,30 @@
+version: "3"
+services:
+  app:
+    build: ./app
+    volumes:
+      - "./app:/app"
+
+  proxy:
+    image: ghcr.io/ochanoco/proxy:develop
+    volumes:
+      - "./proxy/data:/workspace/data"
+      - "./proxy/config.yaml:/workspace/config.yaml"
+    env_file:
+      - ./proxy/secret.env
+    environment:
+      - OCHANOCO_DB_TYPE=sqlite3
+      - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1
+
+  tls:
+    image: steveltn/https-portal:1
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      DOMAINS: 'test.ochano.co -> http://proxy:8080' # change 'test.ochano.co' to your domain
+      STAGE: 'production'
+      FORCE_RENEW: 'true'
+
+    volumes:
+      - ./portal/data:/var/lib/https-portal

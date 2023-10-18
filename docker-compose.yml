@@ -17,4 +17,3 @@ services:
     environment:
       - OCHANOCO_DB_TYPE=sqlite3
       - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1
-      - OCHANOCO_BASE=http://127.0.0.1:8080/ochanoco

@@ -4,22 +4,20 @@ app = Flask(__name__)
 
 posts = []
 
-TOKEN = os.environ.get('OCHANOCO_SECRET')
 
+# TOKEN = os.environ.get('OCHANOCO_SECRET')
+#
+# def authenticate():
+#   may be not needed
+#   token = request.headers.get('X-Ochanoco-Proxy-Token', '')
+#   print('token: ', token)
 
-def authenticate():
-    # may be not needed
-    token = request.headers.get('X-Ochanoco-Proxy-Token', '')
-    print('token: ', token)
+#   if token != TOKEN:
+#       return None
 
-    if token != TOKEN:
-        return None
-    ###
+#   user_id = request.headers.get('X-Ochanoco-UserID', '')
 
-    user_id = request.headers.get('X-Ochanoco-UserID', '')
-    print('user_id: ', user_id)
-
-    return user_id
+#   return user_id
 
 
 @app.route("/", methods=['GET'])
@@ -37,7 +35,8 @@ def show_post(post_id):
 
 @app.route("/post", methods=['POST'])
 def create_post():
-    user_id = authenticate()
+    # user_id = authenticate()
+    user_id = request.headers.get('X-Ochanoco-UserID', '')
     if not user_id:
         return 'ng'
 
@@ -52,7 +51,8 @@ def create_post():
 
 @app.route("/post/<post_id>", methods=['PUT'])
 def update_post(post_id):
-    user_id = authenticate()
+    # user_id = authenticate()
+    user_id = request.headers.get('X-Ochanoco-UserID', '')
     index = int(post_id)
 
     if posts[index]['user_id'] != user_id:
@@ -67,7 +67,8 @@ def update_post(post_id):
 
 @app.route("/post/<post_id>", methods=['DELETE'])
 def delete_post(post_id):
-    user_id = authenticate()
+    # user_id = authenticate()
+    user_id = request.headers.get('X-Ochanoco-UserID', '')
     index = int(post_id)
 
     if posts[index]['user_id'] != user_id:

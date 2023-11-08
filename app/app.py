@@ -7,15 +7,15 @@ app = Flask(__name__)
 posts = []
 
 APP_TOKEN = secrets.token_urlsafe(32).encode('ascii')
-# OCHANOCO_TOKEN = os.environ.get('OCHANOCO_SECRET')
+# TORIMA_TOKEN = os.environ.get('TORIMA_SECRET')
 
 
 def authenticate():
-    #   token = request.headers.get('X-Ochanoco-Proxy-Token', '')
-    #   if token != OCHANOCO_TOKEN:
+    #   token = request.headers.get('X-Torima-Proxy-Token', '')
+    #   if token != TORIMA_TOKEN:
     #       return None
 
-    user_id = request.headers.get('X-Ochanoco-UserID', '').encode('ascii')
+    user_id = request.headers.get('X-Torima-UserID', '').encode('ascii')
     if not user_id:
         return None
 
@@ -78,7 +78,7 @@ def delete_post(post_id):
     return 'ok'
 
 
-@app.route("/_ochanoco/back", methods=['GET'])
+@app.route("/_torima/back", methods=['GET'])
 def back():
     return redirect('/')
 

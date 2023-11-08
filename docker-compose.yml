@@ -6,7 +6,7 @@ services:
       - "./app:/app"
 
   proxy:
-    image: ghcr.io/ochanoco/proxy:develop
+    image: ghcr.io/ochanoco/torima:develop
     volumes:
       - "./proxy/data:/workspace/data"
       - "./proxy/config.yaml:/workspace/config.yaml"
@@ -15,5 +15,5 @@ services:
     env_file:
       - ./proxy/secret.env
     environment:
-      - OCHANOCO_DB_TYPE=sqlite3
-      - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1
+      - TORIMA_DB_TYPE=sqlite3
+      - TORIMA_DB_CONFIG=file:./data/db.sqlite3?_fk=1

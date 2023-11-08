@@ -6,15 +6,15 @@ services:
       - "./app:/app"
 
   proxy:
-    image: ghcr.io/ochanoco/proxy:develop
+    image: ghcr.io/ochanoco/torima:develop
     volumes:
       - "./proxy/data:/workspace/data"
       - "./proxy/config.yaml:/workspace/config.yaml"
     env_file:
       - ./proxy/secret.env
     environment:
-      - OCHANOCO_DB_TYPE=sqlite3
-      - OCHANOCO_DB_CONFIG=file:./data/db.sqlite3?_fk=1
+      - TORIMA_DB_TYPE=sqlite3
+      - TORIMA_DB_CONFIG=file:./data/db.sqlite3?_fk=1
 
   tls:
     image: steveltn/https-portal:1
@@ -22,7 +22,7 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'test.ochano.co -> http://proxy:8080' # change 'test.ochano.co' to your domain
+      DOMAINS: 'example.ochano.co -> http://proxy:8080' # change 'example.ochano.co' to your domain
       STAGE: 'production'
       FORCE_RENEW: 'true'
 
